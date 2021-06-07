@@ -14,10 +14,10 @@ from nets import inception_v3, inception_resnet_v2
 
 slim = tf.contrib.slim
 
-tf.flags.DEFINE_string('checkpoint_path', './tf_models', 'Path to checkpoint for inception network.')
+tf.flags.DEFINE_string('checkpoint_path', './nets_weight', 'Path to checkpoint for inception network.')
 tf.flags.DEFINE_string('input_csv', 'data/val_rs.csv', 'Input directory with images.')
 tf.flags.DEFINE_string('input_dir', 'data/val_rs/', 'Input directory with images.')
-tf.flags.DEFINE_string('output_dir', 'adv_img/', 'Output directory with adv images.')
+tf.flags.DEFINE_string('output_dir', 'adv_img_tf/', 'Output directory with adv images.')
 tf.flags.DEFINE_float('max_epsilon', 16.0, 'Maximum size of adversarial perturbation.')
 tf.flags.DEFINE_integer('num_classes', 1001, 'Maximum size of adversarial perturbation.')
 tf.flags.DEFINE_integer('num_iter', 10, 'Number of iterations.')

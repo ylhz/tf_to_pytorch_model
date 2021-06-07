@@ -1,5 +1,5 @@
 # encoding:utf-8
-"""Implementation of sample attack."""
+"""Test the accuracy of the original models."""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -14,13 +14,11 @@ from nets import inception_v3, inception_resnet_v2, resnet_v2, inception_v4
 
 slim = tf.contrib.slim
 
-tf.flags.DEFINE_string('checkpoint_path', '/home/yuanshengming/mmdnn/tf_models', 'Path to checkpoint for inception network.')
+tf.flags.DEFINE_string('checkpoint_path', './nets_weight', 'Path to checkpoint for inception network.')
 tf.flags.DEFINE_string('input_csv', 'data/val_rs.csv', 'Input directory with images.')
-# tf.flags.DEFINE_string('input_dir', 'data/val_rs/', 'Input directory with images.')
-tf.flags.DEFINE_string('input_dir', '/home/yuanshengming/data/defenses/base_img_VT/outputs_vni_dts', 'Input directory with images.')
+tf.flags.DEFINE_string('input_dir', 'data/val_rs/', 'Input directory with images.')
 
 tf.flags.DEFINE_integer('num_classes', 1001, 'Maximum size of adversarial perturbation.')
-tf.flags.DEFINE_integer('num_iter', 10, 'Number of iterations.')
 tf.flags.DEFINE_integer('image_width', 299, 'Width of each input images.')
 tf.flags.DEFINE_integer('image_height', 299, 'Height of each input images.')
 tf.flags.DEFINE_integer('batch_size', 10, 'How man images process at one time.')

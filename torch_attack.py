@@ -1,4 +1,5 @@
-
+# encoding:utf-8
+"""Implementation of sample attack."""
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -16,22 +17,21 @@ import pandas as pd
 from tqdm import tqdm
 from PIL import Image
 
-
 from torch_nets import tf_inception_v3, tf_inc_res_v2
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--gpu', type=str, default='0', help='The ID of GPU to use.')
-parser.add_argument('--input_csv', type=str, default='/home/yuanshengming/Global_Attack/VT/dev_data/val_rs.csv', help='Input csv with images.')
-parser.add_argument('--input_dir', type=str, default='/home/yuanshengming/Global_Attack/VT/dev_data/val_rs', help='Input images.')
-parser.add_argument('--output_dir', type=str, default='adv_img/', help='Output directory with adv images.')
-parser.add_argument('--model_dir', type=str, default='/home/yuanshengming/mmdnn/net_weight/', help='Model weight directory.')
+parser.add_argument('--input_csv', type=str, default='./data/val_rs.csv', help='Input csv with images.')
+parser.add_argument('--input_dir', type=str, default='./data/val_rs', help='Input images.')
+parser.add_argument('--output_dir', type=str, default='adv_img_torch/', help='Output directory with adv images.')
+parser.add_argument('--model_dir', type=str, default='./torch_nets_weight/', help='Model weight directory.')
 
 parser.add_argument("--max_epsilon", type=float, default=16.0, help="Maximum size of adversarial perturbation.")
 parser.add_argument("--num_iter", type=int, default=10, help="Number of iterations.")
 parser.add_argument("--image_width", type=int, default=299, help="Width of each input images.")
 parser.add_argument("--image_height", type=int, default=299, help="Height of each input images.")
-parser.add_argument("--batch_size", type=int, default=10, help="How many images process at one time.")
+parser.add_argument("--batch_size", type=int, default=20, help="How many images process at one time.")
 parser.add_argument("--momentum", type=float, default=1.0, help="Momentum")
 
 opt = parser.parse_args()
