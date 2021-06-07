@@ -38,6 +38,14 @@ The following table shows the source of the converted model and the accuracy of 
 | <a herf='https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy'>tf_ens3_adv_inc_v3</a> |              | 99.80 | 99.80 | 299*299 |
 | <a herf='https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy'>tf_ens4_adv_inc_v3</a> |              | 99.90 | 99.90 | 299*299 |
 
+# Implementation of sample attack
+
+method: I-FGSM
+
+white box: inception_v3
+
+black_box: inception_resnet_v2
+
 # Note !
 
 1. Model output without aux_logits. 
