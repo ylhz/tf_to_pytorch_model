@@ -1,4 +1,6 @@
 # encoding:utf-8
+"""
+"""
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -16,7 +18,30 @@ import pandas as pd
 from tqdm import tqdm
 from PIL import Image
 
-from torch_nets import tf_inception_v3, tf_inc_res_v2, tf_resnet_v2_50, tf_resnet_v2_152, tf_adv_inception_v3, tf_ens4_adv_inc_v3
+from torch_nets import (
+    tf_inception_v3, 
+    tf_inception_v4, 
+    tf_resnet_v2_50, 
+    # tf_resnet_v2_101, 
+    tf_resnet_v2_152, 
+    tf_inc_res_v2, 
+    tf_adv_inception_v3, 
+    tf_ens3_adv_inc_v3,
+    tf_ens4_adv_inc_v3,
+    tf_ens_adv_inc_res_v2,
+    )
+
+
+list_nets = [
+    'tf_inception_v3', 
+    'tf_inception_v4', 
+    'tf_resnet_v2_50', 
+    'tf_resnet_v2_152', 
+    'tf_inc_res_v2', 
+    'tf_adv_inception_v3', 
+    'tf_ens3_adv_inc_v3', 
+    'tf_ens4_adv_inc_v3', 
+    'tf_ens_adv_inc_res_v2']
 
 parser = argparse.ArgumentParser()
 
@@ -86,65 +111,77 @@ class ImageNet(data.Dataset):
     def __len__(self):
         return len(self.csv)
 
-def get_models(net, net_name, model_dir):
+def get_model(net_name, model_dir):
     """Load converted model"""
-    model_path = model_dir + net_name + '.npy'
+    model_path = os.path.join(model_dir, net_name + '.npy')
+
+    if net_name == 'tf_inception_v3':
+        net = tf_inception_v3
+    elif net_name == 'tf_inception_v4':
+        net = tf_inception_v4
+    elif net_name == 'tf_resnet_v2_50':
+        net = tf_resnet_v2_50
+    elif net_name == 'tf_resnet_v2_101':
+        net = tf_resnet_v2_101
+    elif net_name == 'tf_resnet_v2_152':
+        net = tf_resnet_v2_152
+    elif net_name == 'tf_inc_res_v2':
+        net = tf_inc_res_v2     
+    elif net_name == 'tf_adv_inception_v3':
+        net = tf_adv_inception_v3    
+    elif net_name == 'tf_ens3_adv_inc_v3':
+        net = tf_ens3_adv_inc_v3    
+    elif net_name == 'tf_ens4_adv_inc_v3':
+        net = tf_ens4_adv_inc_v3    
+    elif net_name == 'tf_ens_adv_inc_res_v2':
+        net = tf_ens_adv_inc_res_v2      
+    else:
+        print('Wrong model name!')
+
     model = nn.Sequential(
         # Images for inception classifier are normalized to be in [-1, 1] interval.
         Normalize('tensorflow'), 
         net.KitModel(model_path).eval().cuda(),)
     return model
 
+def get_models(list_nets, model_dir):
+    """load models with dict"""
+    nets = {}
+    for net in list_nets:
+        nets[net] = get_model(net, model_dir)
+    return nets
+
 def main():
     transforms = T.Compose([T.ToTensor()])
 
-    # Load inputs and models
+    # Load inputs
     inputs = ImageNet(opt.input_dir, opt.input_csv, transforms)
     data_loader = DataLoader(inputs, batch_size=opt.batch_size, shuffle=False, pin_memory=True, num_workers=8)
     input_num = len(inputs)
 
     # Create models
-    inc_res_v2 = get_models(tf_inc_res_v2, 'tf_inc_res_v2', opt.model_dir)
-    inc_v3 = get_models(tf_inception_v3, 'tf_inception_v3', opt.model_dir)
-    res_v2_50 = get_models(tf_resnet_v2_50, 'tf_resnet_v2_50', opt.model_dir)
-    res_v2_152 = get_models(tf_resnet_v2_152, 'tf_resnet_v2_152', opt.model_dir)
-    adv_inc_v3 = get_models(tf_adv_inception_v3, 'tf_adv_inception_v3', opt.model_dir)
-    ens4_adv_inc_v3 = get_models(tf_ens4_adv_inc_v3, 'tf_ens4_adv_inc_v3', opt.model_dir)
+    models = get_models(list_nets, opt.model_dir)
 
+    # Initialization parameters
+    correct_num = {}
+    logits = {}
+    for net in list_nets:
+        correct_num[net] = 0
+    
     # Start iteration
-    inc_res_v2_num, inc_v3_num = 0, 0
-    res_v2_50_num = 0
-    res_v2_152_num = 0
-    adv_inc_v3_num = 0
-    ens4_adv_inc_v3_num = 0
     for images, filename, label in tqdm(data_loader):
         label = label.cuda()
         images = images.cuda()
 
-        # Compute accuracy
+        # Prediction
         with torch.no_grad():
-            inc_res_v2_logits = inc_res_v2(images)
-            inc_v3_logits = inc_v3(images)
-            res_v2_50_logits = res_v2_50(images)
-            res_v2_152_logits = res_v2_152(images)
-            adv_inc_v3_logits = adv_inc_v3(images)
-            ens4_adv_inc_v3_logits = ens4_adv_inc_v3(images)
+            for net in list_nets:
+                logits[net] = models[net](images)
+                correct_num[net] += (torch.argmax(logits[net], axis=1) == label).detach().sum().cpu()
 
-            inc_res_v2_num += (torch.argmax(inc_res_v2_logits, axis=1) == label).detach().sum().cpu()
-            inc_v3_num += (torch.argmax(inc_v3_logits, axis=1) == label).detach().sum().cpu()
-            res_v2_50_num += (torch.argmax(res_v2_50_logits, axis=1) == label).detach().sum().cpu()
-            res_v2_152_num += (torch.argmax(res_v2_152_logits, axis=1) == label).detach().sum().cpu()
-            adv_inc_v3_num += (torch.argmax(adv_inc_v3_logits, axis=1) == label).detach().sum().cpu()
-            ens4_adv_inc_v3_num += (torch.argmax(ens4_adv_inc_v3_logits, axis=1) == label).detach().sum().cpu()
-
-            # print('True:',label,'\nPred:', torch.argmax(inc_res_v2_logits, axis=1))
-
-    print('inc_v3 accuracy:',inc_v3_num/input_num)
-    print('inc_res_v2 accuracy:',inc_res_v2_num/input_num)
-    print('res_v2_50 accuracy:',res_v2_50_num/input_num)
-    print('res_v2_152 accuracy:',res_v2_152_num/input_num)
-    print('adv_inc_v3 accuracy:',adv_inc_v3_num/input_num)
-    print('ens4_adv_inc_v3 accuracy:',ens4_adv_inc_v3_num/input_num)
+    # Print accuracy
+    for net in list_nets:
+        print('{} accuracy: {:.2%}'.format(net, correct_num[net]/input_num))
 
 if __name__ == '__main__':
     main()
