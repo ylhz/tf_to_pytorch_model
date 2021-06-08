@@ -2,7 +2,7 @@
 
 Language : EN | [CN](./README.cn.md) 
 
-In this repo, we convert some common tf models used in adversarial attacks to torch models. We also provide the code for you to run you algorithm via pytorch.
+In this repo, we convert some common tf models used in adversarial attacks to torch models. We also provide the code for you to run your algorithm via pytorch.
 
 ## File Description
 
