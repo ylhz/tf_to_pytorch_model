@@ -51,6 +51,5 @@ black_box: inception_resnet_v2
 
 # Note !
 
-1. Model output without aux_logits. 
-2. Model input is best specified as required, otherwise errors may occur.
+Model input is best specified as required, otherwise errors may occur.
 
