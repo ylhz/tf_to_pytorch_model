@@ -34,7 +34,7 @@ The following table shows the source of the converted model and the accuracy of 
 |[tf_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inc_res_v2.npy)|| 97.20 | 97.20 | 299*299 |
 |tf_resnet_v2_101||99.80|99.80|  299*299|
 |[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|| 97.50 | 97.50 | 299*299 |
-| tf_inc_res_v2 ||10.50| 99.90 | 299*299 |
+| tf_inc_res_v2 ||99.90| 99.90 | 299*299 |
 | [tf_adv_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_adv_inception_v3.npy) |              | 100.00 | 100.00 | 299*299 |
 | [tf_ens3_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy) |              | 99.80 | 99.80 | 299*299 |
 | [tf_ens4_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy) |              | 99.90 | 99.90 | 299*299 |
