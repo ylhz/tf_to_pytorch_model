@@ -373,14 +373,19 @@ class KitModel(nn.Module):
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_0/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=256, eps=0.0010000000474974513, momentum=0.0)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_1/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=256, eps=0.0010000000474974513, momentum=0.0)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_2/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=256, eps=0.0010000000474974513, momentum=0.0)
+        self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/AuxLogits/Conv2d_1b_1x1/Conv2D', in_channels=1088, out_channels=128, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
+        self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/AuxLogits/Conv2d_1b_1x1/BatchNorm/FusedBatchNorm', num_features=128, eps=0.0010000000474974513, momentum=0.0)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_0/Conv2d_1a_3x3/Conv2D', in_channels=256, out_channels=384, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_1/Conv2d_1a_3x3/Conv2D', in_channels=256, out_channels=288, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_2/Conv2d_0b_3x3/Conv2D', in_channels=256, out_channels=288, kernel_size=(3, 3), stride=(1, 1), groups=1, bias=None)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_0/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=384, eps=0.0010000000474974513, momentum=0.0)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_1/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=288, eps=0.0010000000474974513, momentum=0.0)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_2/Conv2d_0b_3x3/BatchNorm/FusedBatchNorm', num_features=288, eps=0.0010000000474974513, momentum=0.0)
+        self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/AuxLogits/Conv2d_2a_5x5/Conv2D', in_channels=128, out_channels=768, kernel_size=(5, 5), stride=(1, 1), groups=1, bias=None)
+        self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/AuxLogits/Conv2d_2a_5x5/BatchNorm/FusedBatchNorm', num_features=768, eps=0.0010000000474974513, momentum=0.0)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_2/Conv2d_1a_3x3/Conv2D', in_channels=288, out_channels=320, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Mixed_7a/Branch_2/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=320, eps=0.0010000000474974513, momentum=0.0)
+        self.EnsAdvInceptionResnetV2_AuxLogits_Logits_MatMul = self.__dense(name = 'EnsAdvInceptionResnetV2/AuxLogits/Logits/MatMul', in_features = 768, out_features = 1001, bias = True)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Repeat_2/block8_1/Branch_0/Conv2d_1x1/Conv2D', in_channels=2080, out_channels=192, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_1_Conv2d_0a_1x1_Conv2D = self.__conv(2, name='EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Repeat_2/block8_1/Branch_1/Conv2d_0a_1x1/Conv2D', in_channels=2080, out_channels=192, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'EnsAdvInceptionResnetV2/EnsAdvInceptionResnetV2/Repeat_2/block8_1/Branch_0/Conv2d_1x1/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
@@ -506,6 +511,7 @@ class KitModel(nn.Module):
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_18_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.10000000149011612]), requires_grad=False))
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_19_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.10000000149011612]), requires_grad=False))
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_20_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.10000000149011612]), requires_grad=False))
+        self.EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Reshape_shape_1 = Parameter(torch.autograd.Variable(torch.Tensor([-1]), requires_grad=False))
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.20000000298023224]), requires_grad=False))
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_2_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.20000000298023224]), requires_grad=False))
         self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_3_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.20000000298023224]), requires_grad=False))
@@ -519,7 +525,6 @@ class KitModel(nn.Module):
         self.EnsAdvInceptionResnetV2_Logits_Flatten_flatten_Reshape_shape_1 = Parameter(torch.autograd.Variable(torch.Tensor([-1]), requires_grad=False))
 
     def forward(self, x):
-        
 
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Conv2d_1a_3x3_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Conv2d_1a_3x3_Conv2D(x)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Conv2d_1a_3x3_Conv2D)
@@ -1224,26 +1229,38 @@ class KitModel(nn.Module):
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_20_Relu)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_20_Relu)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_3_MaxPool_1a_3x3_MaxPool, EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_3_MaxPool_1a_3x3_MaxPool_idx = F.max_pool2d(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_20_Relu, kernel_size=(3, 3), stride=(2, 2), padding=0, ceil_mode=False, return_indices=True)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1a_3x3_AvgPool = F.avg_pool2d(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_1_block17_20_Relu, kernel_size=(5, 5), stride=(3, 3), padding=(0,), ceil_mode=False, count_include_pad=False)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_Conv2D)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Conv2D)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D = self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1a_3x3_AvgPool)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_Relu)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Relu)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D_pad = F.pad(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Relu, (1, 1, 1, 1))
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D_pad)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Relu = F.relu(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D = self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Relu)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Relu)
+        EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Relu = F.relu(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D)
+        EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Shape = torch.Tensor(list(EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Relu.size()))
+        EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Reshape = torch.reshape(input = EnsAdvInceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Relu, shape = (-1,768))
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Relu = F.relu(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
+        EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_strided_slice = EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Shape[0:1][0]
+        EnsAdvInceptionResnetV2_AuxLogits_Logits_MatMul = self.EnsAdvInceptionResnetV2_AuxLogits_Logits_MatMul(EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Reshape)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_concat = torch.cat((EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Relu, EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Relu, EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Relu, EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_Branch_3_MaxPool_1a_3x3_MaxPool,), 1)
+        EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Reshape_shape = [EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_strided_slice,self.EnsAdvInceptionResnetV2_AuxLogits_Flatten_flatten_Reshape_shape_1]
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_concat)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_1_Conv2d_0a_1x1_Conv2D = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_1_Conv2d_0a_1x1_Conv2D(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Mixed_7a_concat)
         EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_BatchNorm_FusedBatchNorm = self.EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_BatchNorm_FusedBatchNorm(EnsAdvInceptionResnetV2_EnsAdvInceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D)
@@ -1442,7 +1459,8 @@ class KitModel(nn.Module):
         EnsAdvInceptionResnetV2_Logits_Flatten_flatten_strided_slice = EnsAdvInceptionResnetV2_Logits_Flatten_flatten_Shape[0:1][0]
         EnsAdvInceptionResnetV2_Logits_Logits_MatMul = self.EnsAdvInceptionResnetV2_Logits_Logits_MatMul(EnsAdvInceptionResnetV2_Logits_Flatten_flatten_Reshape)
         EnsAdvInceptionResnetV2_Logits_Flatten_flatten_Reshape_shape = [EnsAdvInceptionResnetV2_Logits_Flatten_flatten_strided_slice,self.EnsAdvInceptionResnetV2_Logits_Flatten_flatten_Reshape_shape_1]
-        return EnsAdvInceptionResnetV2_Logits_Logits_MatMul
+        MMdnn_Output_input = [EnsAdvInceptionResnetV2_Logits_Logits_MatMul,EnsAdvInceptionResnetV2_AuxLogits_Logits_MatMul]
+        return MMdnn_Output_input
 
 
     @staticmethod
@@ -1467,20 +1485,20 @@ class KitModel(nn.Module):
         return layer
 
     @staticmethod
-    def __dense(name, **kwargs):
-        layer = nn.Linear(**kwargs)
-        layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
-        if 'bias' in _weights_dict[name]:
-            layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))
-        return layer
-
-    @staticmethod
     def __conv(dim, name, **kwargs):
         if   dim == 1:  layer = nn.Conv1d(**kwargs)
         elif dim == 2:  layer = nn.Conv2d(**kwargs)
         elif dim == 3:  layer = nn.Conv3d(**kwargs)
         else:           raise NotImplementedError()
 
+        layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
+        if 'bias' in _weights_dict[name]:
+            layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))
+        return layer
+
+    @staticmethod
+    def __dense(name, **kwargs):
+        layer = nn.Linear(**kwargs)
         layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
         if 'bias' in _weights_dict[name]:
             layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))

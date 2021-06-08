@@ -373,14 +373,19 @@ class KitModel(nn.Module):
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_0/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=256, eps=0.0010000000474974513, momentum=0.0)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_1/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=256, eps=0.0010000000474974513, momentum=0.0)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_2/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=256, eps=0.0010000000474974513, momentum=0.0)
+        self.InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D = self.__conv(2, name='InceptionResnetV2/AuxLogits/Conv2d_1b_1x1/Conv2D', in_channels=1088, out_channels=128, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
+        self.InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/AuxLogits/Conv2d_1b_1x1/BatchNorm/FusedBatchNorm', num_features=128, eps=0.0010000000474974513, momentum=0.0)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_0/Conv2d_1a_3x3/Conv2D', in_channels=256, out_channels=384, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_1/Conv2d_1a_3x3/Conv2D', in_channels=256, out_channels=288, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D = self.__conv(2, name='InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_2/Conv2d_0b_3x3/Conv2D', in_channels=256, out_channels=288, kernel_size=(3, 3), stride=(1, 1), groups=1, bias=None)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_0/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=384, eps=0.0010000000474974513, momentum=0.0)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_1/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=288, eps=0.0010000000474974513, momentum=0.0)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_2/Conv2d_0b_3x3/BatchNorm/FusedBatchNorm', num_features=288, eps=0.0010000000474974513, momentum=0.0)
+        self.InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D = self.__conv(2, name='InceptionResnetV2/AuxLogits/Conv2d_2a_5x5/Conv2D', in_channels=128, out_channels=768, kernel_size=(5, 5), stride=(1, 1), groups=1, bias=None)
+        self.InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/AuxLogits/Conv2d_2a_5x5/BatchNorm/FusedBatchNorm', num_features=768, eps=0.0010000000474974513, momentum=0.0)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_2/Conv2d_1a_3x3/Conv2D', in_channels=288, out_channels=320, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Mixed_7a/Branch_2/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=320, eps=0.0010000000474974513, momentum=0.0)
+        self.InceptionResnetV2_AuxLogits_Logits_MatMul = self.__dense(name = 'InceptionResnetV2/AuxLogits/Logits/MatMul', in_features = 768, out_features = 1001, bias = True)
         self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D = self.__conv(2, name='InceptionResnetV2/InceptionResnetV2/Repeat_2/block8_1/Branch_0/Conv2d_1x1/Conv2D', in_channels=2080, out_channels=192, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
         self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_1_Conv2d_0a_1x1_Conv2D = self.__conv(2, name='InceptionResnetV2/InceptionResnetV2/Repeat_2/block8_1/Branch_1/Conv2d_0a_1x1/Conv2D', in_channels=2080, out_channels=192, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
         self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'InceptionResnetV2/InceptionResnetV2/Repeat_2/block8_1/Branch_0/Conv2d_1x1/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
@@ -506,6 +511,7 @@ class KitModel(nn.Module):
         self.InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_18_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.10000000149011612]), requires_grad=False))
         self.InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_19_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.10000000149011612]), requires_grad=False))
         self.InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_20_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.10000000149011612]), requires_grad=False))
+        self.InceptionResnetV2_AuxLogits_Flatten_flatten_Reshape_shape_1 = Parameter(torch.autograd.Variable(torch.Tensor([-1]), requires_grad=False))
         self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.20000000298023224]), requires_grad=False))
         self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_2_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.20000000298023224]), requires_grad=False))
         self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_3_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([0.20000000298023224]), requires_grad=False))
@@ -518,10 +524,7 @@ class KitModel(nn.Module):
         self.InceptionResnetV2_InceptionResnetV2_Block8_mul_x = Parameter(torch.autograd.Variable(torch.Tensor([1.0]), requires_grad=False))
         self.InceptionResnetV2_Logits_Flatten_flatten_Reshape_shape_1 = Parameter(torch.autograd.Variable(torch.Tensor([-1]), requires_grad=False))
 
-
     def forward(self, x):
-
-        
         InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_Conv2D(x)
         InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
@@ -1225,26 +1228,38 @@ class KitModel(nn.Module):
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D(InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_20_Relu)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Conv2D(InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_20_Relu)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_3_MaxPool_1a_3x3_MaxPool, InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_3_MaxPool_1a_3x3_MaxPool_idx = F.max_pool2d(InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_20_Relu, kernel_size=(3, 3), stride=(2, 2), padding=0, ceil_mode=False, return_indices=True)
+        InceptionResnetV2_AuxLogits_Conv2d_1a_3x3_AvgPool = F.avg_pool2d(InceptionResnetV2_InceptionResnetV2_Repeat_1_block17_20_Relu, kernel_size=(5, 5), stride=(3, 3), padding=(0,), ceil_mode=False, count_include_pad=False)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Conv2D)
+        InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D = self.InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D(InceptionResnetV2_AuxLogits_Conv2d_1a_3x3_AvgPool)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
+        InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm(InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_0a_1x1_Relu)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_0a_1x1_Relu)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D_pad = F.pad(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0a_1x1_Relu, (1, 1, 1, 1))
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D_pad)
+        InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Relu = F.relu(InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Conv2D)
+        InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D = self.InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D(InceptionResnetV2_AuxLogits_Conv2d_1b_1x1_Relu)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_BatchNorm_FusedBatchNorm)
+        InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm(InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Conv2D)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_0b_3x3_Relu)
+        InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Relu = F.relu(InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Conv2D)
+        InceptionResnetV2_AuxLogits_Flatten_flatten_Shape = torch.Tensor(list(InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Relu.size()))
+        InceptionResnetV2_AuxLogits_Flatten_flatten_Reshape = torch.reshape(input = InceptionResnetV2_AuxLogits_Conv2d_2a_5x5_Relu, shape = (-1,768))
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
+        InceptionResnetV2_AuxLogits_Flatten_flatten_strided_slice = InceptionResnetV2_AuxLogits_Flatten_flatten_Shape[0:1][0]
+        InceptionResnetV2_AuxLogits_Logits_MatMul = self.InceptionResnetV2_AuxLogits_Logits_MatMul(InceptionResnetV2_AuxLogits_Flatten_flatten_Reshape)
         InceptionResnetV2_InceptionResnetV2_Mixed_7a_concat = torch.cat((InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_0_Conv2d_1a_3x3_Relu, InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_1_Conv2d_1a_3x3_Relu, InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_2_Conv2d_1a_3x3_Relu, InceptionResnetV2_InceptionResnetV2_Mixed_7a_Branch_3_MaxPool_1a_3x3_MaxPool,), 1)
+        InceptionResnetV2_AuxLogits_Flatten_flatten_Reshape_shape = [InceptionResnetV2_AuxLogits_Flatten_flatten_strided_slice,self.InceptionResnetV2_AuxLogits_Flatten_flatten_Reshape_shape_1]
         InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D(InceptionResnetV2_InceptionResnetV2_Mixed_7a_concat)
         InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_1_Conv2d_0a_1x1_Conv2D = self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_1_Conv2d_0a_1x1_Conv2D(InceptionResnetV2_InceptionResnetV2_Mixed_7a_concat)
         InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_BatchNorm_FusedBatchNorm = self.InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_BatchNorm_FusedBatchNorm(InceptionResnetV2_InceptionResnetV2_Repeat_2_block8_1_Branch_0_Conv2d_1x1_Conv2D)
@@ -1439,22 +1454,13 @@ class KitModel(nn.Module):
         InceptionResnetV2_InceptionResnetV2_Conv2d_7b_1x1_Relu = F.relu(InceptionResnetV2_InceptionResnetV2_Conv2d_7b_1x1_BatchNorm_FusedBatchNorm)
         InceptionResnetV2_Logits_AvgPool_1a_8x8_AvgPool = F.avg_pool2d(InceptionResnetV2_InceptionResnetV2_Conv2d_7b_1x1_Relu, kernel_size=(8, 8), stride=(2, 2), padding=(0,), ceil_mode=False, count_include_pad=False)
         InceptionResnetV2_Logits_Flatten_flatten_Shape = torch.Tensor(list(InceptionResnetV2_Logits_AvgPool_1a_8x8_AvgPool.size()))
-        # InceptionResnetV2_Logits_Flatten_flatten_Reshape = torch.reshape(input = InceptionResnetV2_Logits_AvgPool_1a_8x8_AvgPool, shape = (1,1536))  # 原本转换后模型，这里需要改为下面那样
         InceptionResnetV2_Logits_Flatten_flatten_Reshape = torch.reshape(input = InceptionResnetV2_Logits_AvgPool_1a_8x8_AvgPool, shape = (-1,1536))
         InceptionResnetV2_Logits_Flatten_flatten_strided_slice = InceptionResnetV2_Logits_Flatten_flatten_Shape[0:1][0]
         InceptionResnetV2_Logits_Logits_MatMul = self.InceptionResnetV2_Logits_Logits_MatMul(InceptionResnetV2_Logits_Flatten_flatten_Reshape)
         InceptionResnetV2_Logits_Flatten_flatten_Reshape_shape = [InceptionResnetV2_Logits_Flatten_flatten_strided_slice,self.InceptionResnetV2_Logits_Flatten_flatten_Reshape_shape_1]
-        # print('shape:',InceptionResnetV2_Logits_Flatten_flatten_Reshape_shape)
-        return InceptionResnetV2_Logits_Logits_MatMul
+        MMdnn_Output_input = [InceptionResnetV2_Logits_Logits_MatMul,InceptionResnetV2_AuxLogits_Logits_MatMul]
+        return MMdnn_Output_input
 
-
-    @staticmethod
-    def __dense(name, **kwargs):
-        layer = nn.Linear(**kwargs)
-        layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
-        if 'bias' in _weights_dict[name]:
-            layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))
-        return layer
 
     @staticmethod
     def __conv(dim, name, **kwargs):
@@ -1463,6 +1469,14 @@ class KitModel(nn.Module):
         elif dim == 3:  layer = nn.Conv3d(**kwargs)
         else:           raise NotImplementedError()
 
+        layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
+        if 'bias' in _weights_dict[name]:
+            layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))
+        return layer
+
+    @staticmethod
+    def __dense(name, **kwargs):
+        layer = nn.Linear(**kwargs)
         layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
         if 'bias' in _weights_dict[name]:
             layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))

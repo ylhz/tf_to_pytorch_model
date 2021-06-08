@@ -120,7 +120,7 @@ def attack(model, img, label):
         x = img + noise
         
         output = model(x)
-        loss = F.cross_entropy(output, label)  # 集成logit
+        loss = F.cross_entropy(output[0], label)  # 集成logit
         loss.backward()
         grad = noise.grad.data
 

@@ -178,7 +178,7 @@ def main():
         with torch.no_grad():
             for net in list_nets:
                 logits[net] = models[net](images)
-                correct_num[net] += (torch.argmax(logits[net], axis=1) == label).detach().sum().cpu()
+                correct_num[net] += (torch.argmax(logits[net][0], axis=1) == label).detach().sum().cpu()
 
     # Print accuracy
     for net in list_nets:

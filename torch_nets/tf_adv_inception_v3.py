@@ -169,12 +169,17 @@ class KitModel(nn.Module):
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D = self.__conv(2, name='AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_0a_1x1/Conv2D', in_channels=768, out_channels=192, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_0/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_0a_1x1/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
+        self.AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_Conv2D = self.__conv(2, name='AdvInceptionV3/AuxLogits/Conv2d_1b_1x1/Conv2D', in_channels=768, out_channels=128, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
+        self.AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AuxLogits/Conv2d_1b_1x1/BatchNorm/FusedBatchNorm', num_features=128, eps=0.0010000000474974513, momentum=0.0)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_0/Conv2d_1a_3x3/Conv2D', in_channels=192, out_channels=320, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Conv2D = self.__conv(2, name='AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_0b_1x7/Conv2D', in_channels=192, out_channels=192, kernel_size=(1, 7), stride=(1, 1), groups=1, bias=None)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_0/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=320, eps=0.0010000000474974513, momentum=0.0)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_0b_1x7/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
+        self.AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_Conv2D = self.__conv(2, name='AdvInceptionV3/AuxLogits/Conv2d_2a_5x5/Conv2D', in_channels=128, out_channels=768, kernel_size=(5, 5), stride=(1, 1), groups=1, bias=None)
+        self.AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AuxLogits/Conv2d_2a_5x5/BatchNorm/FusedBatchNorm', num_features=768, eps=0.0010000000474974513, momentum=0.0)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D = self.__conv(2, name='AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_0c_7x1/Conv2D', in_channels=192, out_channels=192, kernel_size=(7, 1), stride=(1, 1), groups=1, bias=None)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_0c_7x1/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
+        self.AdvInceptionV3_AuxLogits_Conv2d_2b_1x1_Conv2D = self.__conv(2, name='AdvInceptionV3/AuxLogits/Conv2d_2b_1x1/Conv2D', in_channels=768, out_channels=1001, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=True)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D = self.__conv(2, name='AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_1a_3x3/Conv2D', in_channels=192, out_channels=192, kernel_size=(3, 3), stride=(2, 2), groups=1, bias=None)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.__batch_normalization(2, 'AdvInceptionV3/AdvInceptionV3/Mixed_7a/Branch_1/Conv2d_1a_3x3/BatchNorm/FusedBatchNorm', num_features=192, eps=0.0010000000474974513, momentum=0.0)
         self.AdvInceptionV3_AdvInceptionV3_Mixed_7b_Branch_0_Conv2d_0a_1x1_Conv2D = self.__conv(2, name='AdvInceptionV3/AdvInceptionV3/Mixed_7b/Branch_0/Conv2d_0a_1x1/Conv2D', in_channels=1280, out_channels=320, kernel_size=(1, 1), stride=(1, 1), groups=1, bias=None)
@@ -482,21 +487,30 @@ class KitModel(nn.Module):
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_Conv2D = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_Conv2D(AdvInceptionV3_AdvInceptionV3_Mixed_6e_concat)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D(AdvInceptionV3_AdvInceptionV3_Mixed_6e_concat)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_2_MaxPool_1a_3x3_MaxPool, AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_2_MaxPool_1a_3x3_MaxPool_idx = F.max_pool2d(AdvInceptionV3_AdvInceptionV3_Mixed_6e_concat, kernel_size=(3, 3), stride=(2, 2), padding=0, ceil_mode=False, return_indices=True)
+        AdvInceptionV3_AuxLogits_AvgPool_1a_5x5_AvgPool = F.avg_pool2d(AdvInceptionV3_AdvInceptionV3_Mixed_6e_concat, kernel_size=(5, 5), stride=(3, 3), padding=(0,), ceil_mode=False, count_include_pad=False)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_Conv2D)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_Conv2D)
+        AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_Conv2D = self.AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_Conv2D(AdvInceptionV3_AuxLogits_AvgPool_1a_5x5_AvgPool)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_BatchNorm_FusedBatchNorm)
+        AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm(AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_Conv2D)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_0a_1x1_Relu)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Conv2D_pad = F.pad(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0a_1x1_Relu, (3, 3, 0, 0))
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Conv2D = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Conv2D(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Conv2D_pad)
+        AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_Relu = F.relu(AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_BatchNorm_FusedBatchNorm)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_Conv2D)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_BatchNorm_FusedBatchNorm(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Conv2D)
+        AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_Conv2D = self.AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_Conv2D(AdvInceptionV3_AuxLogits_Conv2d_1b_1x1_Relu)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_0_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_BatchNorm_FusedBatchNorm)
+        AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm(AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_Conv2D)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D_pad = F.pad(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0b_1x7_Relu, (0, 0, 3, 3))
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D_pad)
+        AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_Relu = F.relu(AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_BatchNorm_FusedBatchNorm)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D)
+        AdvInceptionV3_AuxLogits_Conv2d_2b_1x1_Conv2D = self.AdvInceptionV3_AuxLogits_Conv2d_2b_1x1_Conv2D(AdvInceptionV3_AuxLogits_Conv2d_2a_5x5_Relu)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm)
+        AdvInceptionV3_AuxLogits_SpatialSqueeze = torch.squeeze(AdvInceptionV3_AuxLogits_Conv2d_2b_1x1_Conv2D)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_0c_7x1_Relu)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm = self.AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_Conv2D)
         AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7a_Branch_1_Conv2d_1a_3x3_BatchNorm_FusedBatchNorm)
@@ -576,20 +590,9 @@ class KitModel(nn.Module):
         AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool = F.avg_pool2d(AdvInceptionV3_AdvInceptionV3_Mixed_7c_concat, kernel_size=(8, 8), stride=(2, 2), padding=(0,), ceil_mode=False, count_include_pad=False)
         AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D = self.AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D(AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool)
         AdvInceptionV3_Logits_SpatialSqueeze = torch.squeeze(AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D)
-        return AdvInceptionV3_Logits_SpatialSqueeze
+        MMdnn_Output_input = [AdvInceptionV3_Logits_SpatialSqueeze,AdvInceptionV3_AuxLogits_SpatialSqueeze]
+        return MMdnn_Output_input
 
-
-    @staticmethod
-    def __conv(dim, name, **kwargs):
-        if   dim == 1:  layer = nn.Conv1d(**kwargs)
-        elif dim == 2:  layer = nn.Conv2d(**kwargs)
-        elif dim == 3:  layer = nn.Conv3d(**kwargs)
-        else:           raise NotImplementedError()
-
-        layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
-        if 'bias' in _weights_dict[name]:
-            layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))
-        return layer
 
     @staticmethod
     def __batch_normalization(dim, name, **kwargs):
@@ -610,5 +613,17 @@ class KitModel(nn.Module):
 
         layer.state_dict()['running_mean'].copy_(torch.from_numpy(_weights_dict[name]['mean']))
         layer.state_dict()['running_var'].copy_(torch.from_numpy(_weights_dict[name]['var']))
+        return layer
+
+    @staticmethod
+    def __conv(dim, name, **kwargs):
+        if   dim == 1:  layer = nn.Conv1d(**kwargs)
+        elif dim == 2:  layer = nn.Conv2d(**kwargs)
+        elif dim == 3:  layer = nn.Conv3d(**kwargs)
+        else:           raise NotImplementedError()
+
+        layer.state_dict()['weight'].copy_(torch.from_numpy(_weights_dict[name]['weights']))
+        if 'bias' in _weights_dict[name]:
+            layer.state_dict()['bias'].copy_(torch.from_numpy(_weights_dict[name]['bias']))
         return layer
 

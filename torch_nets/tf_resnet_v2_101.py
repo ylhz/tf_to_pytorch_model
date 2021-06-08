@@ -612,7 +612,8 @@ class KitModel(nn.Module):
         resnet_v2_101_pool5 = torch.mean(resnet_v2_101_pool5, 2, True)
         resnet_v2_101_logits_Conv2D = self.resnet_v2_101_logits_Conv2D(resnet_v2_101_pool5)
         resnet_v2_101_SpatialSqueeze = torch.squeeze(resnet_v2_101_logits_Conv2D)
-        return resnet_v2_101_SpatialSqueeze
+        MMdnn_Output_input = [resnet_v2_101_SpatialSqueeze]
+        return MMdnn_Output_input
 
 
     @staticmethod

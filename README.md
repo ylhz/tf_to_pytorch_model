@@ -32,11 +32,10 @@ The following table shows the source of the converted model and the accuracy of 
 | [tf_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v3.npy) |              | 99.90 | 99.90 | 299*299 |
 | [tf_inception_v4](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v4.npy) |              | 99.90 | 100.00 | 299*299 |
 |[tf_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inc_res_v2.npy)|| 97.20 | 97.20 | 299*299 |
-|tf_resnet_v2_50||97.20|97.20|  299*299|
+|[tf_resnet_v2_50]()||97.20|97.20|  299*299|
+|[tf_resnet_v2_101]()||99.80|99.80|  299*299|
 |[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|| 97.50 | 97.50 | 299*299 |
-|tf_resnet_v2_101||99.80|99.80|  299*299|
-|[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|| 97.50 | 97.50 | 299*299 |
-| tf_inc_res_v2 ||99.90| 99.90 | 299*299 |
+| [tf_inc_res_v2]()||99.90| 99.90 | 299*299 |
 | [tf_adv_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_adv_inception_v3.npy) |              | 100.00 | 100.00 | 299*299 |
 | [tf_ens3_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy) |              | 99.80 | 99.80 | 299*299 |
 | [tf_ens4_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy) |              | 99.90 | 99.90 | 299*299 |
@@ -51,5 +50,16 @@ black_box: inception_resnet_v2
 
 # Note !
 
-Model input is best specified as required, otherwise errors may occur.
+1. If the model has aux_logits output, the output will be ```[logits, aux_logits]```. Otherwise, the output is ```[logits]```. So ```logits = model(input)[0]```.
+
+    Models with aux_logits: 
+
+    * tf_inception_v3, 
+    * tf_inception_v4, 
+    * tf_inc_res_v2, 
+    * tf_adv_inception_v3, 
+    * tf_ens3_adv_inc_v3, 
+    * tf_ens4_adv_inc_v3.
+
+2. Model input is best specified as required, otherwise errors may occur.
 
