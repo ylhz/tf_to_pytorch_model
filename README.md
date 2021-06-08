@@ -29,16 +29,17 @@ The following table shows the source of the converted model and the accuracy of 
 
 | Converted model name                                         | Model source | torch Accuracy(%) | tf Accuracy(%) | input size |
 | ------------------------------------------------------------ | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [tf_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v3.npy) |              | 99.90 | 99.90 | 299*299 |
-| [tf_inception_v4](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v4.npy) |              | 99.90 | 100.00 | 299*299 |
-|[tf_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inc_res_v2.npy)|| 97.20 | 97.20 | 299*299 |
-|[tf_resnet_v2_50]()||97.20|97.20|  299*299|
-|[tf_resnet_v2_101]()||99.80|99.80|  299*299|
-|[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|| 97.50 | 97.50 | 299*299 |
-| [tf_inc_res_v2]()||99.90| 99.90 | 299*299 |
-| [tf_adv_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_adv_inception_v3.npy) |              | 100.00 | 100.00 | 299*299 |
-| [tf_ens3_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy) |              | 99.80 | 99.80 | 299*299 |
-| [tf_ens4_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy) |              | 99.90 | 99.90 | 299*299 |
+| [tf_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v3.npy) |    [inception_v3](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)          | 99.90 | 99.90 | 299*299 |
+| [tf_inception_v4](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v4.npy) | [inception_v4](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw) | 99.90 | 100.00 | 299*299 |
+|[tf_resnet_v2_50](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_50.npy)|[resnet_v2_50_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|97.20|97.20|  299*299|
+|[tf_resnet_v2_101](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_101.npy)|[resnet_v2_101](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)|99.80|99.80|  299*299|
+|[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|[resnet_v2_152_2017_04_14](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)| 97.50 | 97.50 | 299*299 |
+| [tf_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inc_res_v2.npy) |[inception_resnet_v2_2016_08_30](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)|99.90| 99.90 | 299*299 |
+| [tf_adv_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_adv_inception_v3.npy) |  [adv_inception_v3_rename](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)    | 100.00 | 100.00 | 299*299 |
+| [tf_ens3_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy) |      [ens3_adv_inception_v3_rename](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)        | 99.80 | 99.80 | 299*299 |
+| [tf_ens4_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy) |  [ens4_adv_inception_v3_rename](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw)  | 99.90 | 99.90 | 299*299 |
+| [tf_ens_adv_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens_adv_inc_res_v2.npy) | [ens_adv_inception_resnet_v2_rename](https://drive.google.com/drive/folders/10cFNVEhLpCatwECA6SPB-2g0q5zZyfaw) | 99.90 | 99.90 | 299*299 |
+
 
 # Implementation of sample attack
 
