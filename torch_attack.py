@@ -170,8 +170,8 @@ def main():
             inc_res_v2_logits = inc_res_v2(adv_img)
             inc_v3_logits = inc_v3(adv_img)
 
-            inc_res_v2_error_num += (torch.argmax(inc_res_v2_logits, axis=1) != label).detach().sum().cpu()
-            inc_v3_error_num += (torch.argmax(inc_v3_logits, axis=1) != label).detach().sum().cpu()
+            inc_res_v2_error_num += (torch.argmax(inc_res_v2_logits[0], axis=1) != label).detach().sum().cpu()
+            inc_v3_error_num += (torch.argmax(inc_v3_logits[0], axis=1) != label).detach().sum().cpu()
             # print('True:',label,'\nPred:', torch.argmax(inc_res_v2_logits, axis=1))
 
     print('(white box)inc_v3 attack success rate:',inc_v3_error_num/input_num)
