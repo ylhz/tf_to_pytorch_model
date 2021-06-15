@@ -103,7 +103,7 @@ def get_models(net, net_name, model_dir):
 
 def save_img(adv_img, img_ID, adv_dir):
     for i in range(adv_img.shape[0]):
-        utils.save_image(adv_img[i], adv_dir + img_ID[i])
+        utils.save_image(adv_img[i], os.path.join(adv_dir, img_ID[i]))
 
 def attack(model, img, label):
     """generate adversarial images"""
