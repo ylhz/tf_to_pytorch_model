@@ -32,6 +32,13 @@ FLAGS = tf.flags.FLAGS
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = FLAGS.gpu
 
+def seed_tensorflow(seed=0):
+    """Set a random seed to ensure that the results are reproducible"""  
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    tf.set_random_seed(seed)
+
 model_checkpoint_map = {
     'inception_v3': os.path.join(FLAGS.checkpoint_path, 'inception_v3.ckpt'),
     'inception_resnet_v2': os.path.join(FLAGS.checkpoint_path, 'inception_resnet_v2_2016_08_30.ckpt'),
@@ -159,4 +166,5 @@ def main(_):
 
 
 if __name__ == '__main__':
+    seed_tensorflow(0)
     tf.app.run()

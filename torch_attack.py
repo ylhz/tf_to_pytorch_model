@@ -38,11 +38,17 @@ opt = parser.parse_args()
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpu
 
-# Set a random seed to ensure that the results are reproducible
-np.random.seed(0)
-random.seed(0)
-torch.manual_seed(0)
-torch.cuda.manual_seed_all(0)
+def seed_torch(seed=0):
+    """Set a random seed to ensure that the results are reproducible"""  
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.enabled = False
 
 class Normalize(nn.Module):
     """
@@ -181,4 +187,5 @@ def main():
     print('(black box)inc_res_v2 attack success rate:',inc_res_v2_error_num/input_num)
 
 if __name__ == '__main__':
+    seed_torch(0)
     main()
