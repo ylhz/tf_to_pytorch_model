@@ -90,7 +90,7 @@ def graph(x, y, i, x_max, x_min, grad):
     # noise = noise / tf.reduce_mean(tf.abs(noise), [1, 2, 3], keep_dims=True)
     # noise = momentum * grad + noise
 
-    x = x + tf.sign(noise)
+    x = x + alpha * tf.sign(noise)
     x = tf.clip_by_value(x, x_min, x_max)
     i = tf.add(i, 1)
     return x, y, i, x_max, x_min, noise
