@@ -7,7 +7,6 @@ from torchvision import transforms as T
 import torch.nn.functional as F
 from torch.autograd import Variable as V
 from torch.autograd.gradcheck import zero_gradients
-import torchvision.utils as utils
 from torch.utils import data
 import os
 import random
@@ -101,9 +100,13 @@ def get_models(net, net_name, model_dir):
 
     return model
 
-def save_img(adv_img, img_ID, adv_dir):
-    for i in range(adv_img.shape[0]):
-        utils.save_image(adv_img[i], os.path.join(adv_dir, img_ID[i]))
+def save_img(images, filenames, output_dir):
+    """save high quality jpeg"""
+    for i, filename in enumerate(filenames):
+        # Add 0.5 after unnormalizing to [0, 255] to round to nearest integer
+        ndarr = images[i].mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
+        img = Image.fromarray(ndarr)
+        img.save(os.path.join(output_dir, filename), quality=100)
 
 def attack(model, img, label):
     """generate adversarial images"""

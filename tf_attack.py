@@ -62,8 +62,8 @@ def save_images(images, filenames, output_dir):
         # so rescale them back to [0, 1].
         with tf.gfile.Open(os.path.join(output_dir, filename), 'w') as f:
             image = (images[i, :, :, :] + 1.0) * 0.5
-            img = Image.fromarray((image * 255).astype('uint8')).convert('RGB')
-            img.save(output_dir + filename, quality=95)
+            img = Image.fromarray((image * 255 + 0.5).astype('uint8')).convert('RGB')
+            img.save(os.path.join(output_dir, filename), quality=100)
 
 def graph(x, y, i, x_max, x_min, grad):
     """"I-FGSM
