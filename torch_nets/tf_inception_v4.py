@@ -913,7 +913,8 @@ class KitModel(nn.Module):
         InceptionV4_InceptionV4_Mixed_7d_Branch_2_Conv2d_0e_3x1_Relu = F.relu(InceptionV4_InceptionV4_Mixed_7d_Branch_2_Conv2d_0e_3x1_BatchNorm_FusedBatchNorm)
         InceptionV4_InceptionV4_Mixed_7d_Branch_2_concat = torch.cat((InceptionV4_InceptionV4_Mixed_7d_Branch_2_Conv2d_0d_1x3_Relu, InceptionV4_InceptionV4_Mixed_7d_Branch_2_Conv2d_0e_3x1_Relu,), 1)
         InceptionV4_InceptionV4_Mixed_7d_concat = torch.cat((InceptionV4_InceptionV4_Mixed_7d_Branch_0_Conv2d_0a_1x1_Relu, InceptionV4_InceptionV4_Mixed_7d_Branch_1_concat, InceptionV4_InceptionV4_Mixed_7d_Branch_2_concat, InceptionV4_InceptionV4_Mixed_7d_Branch_3_Conv2d_0b_1x1_Relu,), 1)
-        InceptionV4_Logits_AvgPool_1a_AvgPool = F.avg_pool2d(InceptionV4_InceptionV4_Mixed_7d_concat, kernel_size=(8, 8), stride=(1, 1), padding=(0,), ceil_mode=False, count_include_pad=False)
+        kernel_size = self._reduced_kernel_size_for_small_input(InceptionV4_InceptionV4_Mixed_7d_concat, [8,8])
+        InceptionV4_Logits_AvgPool_1a_AvgPool = F.avg_pool2d(InceptionV4_InceptionV4_Mixed_7d_concat, kernel_size=(kernel_size[0], kernel_size[1]), stride=(1, 1), padding=(0,), ceil_mode=False, count_include_pad=False)
         InceptionV4_Logits_PreLogitsFlatten_flatten_Shape = torch.Tensor(list(InceptionV4_Logits_AvgPool_1a_AvgPool.size()))
         InceptionV4_Logits_PreLogitsFlatten_flatten_Reshape = torch.reshape(input = InceptionV4_Logits_AvgPool_1a_AvgPool, shape = (1,1536))
         InceptionV4_Logits_PreLogitsFlatten_flatten_strided_slice = InceptionV4_Logits_PreLogitsFlatten_flatten_Shape[0:1][0]
@@ -922,6 +923,27 @@ class KitModel(nn.Module):
         MMdnn_Output_input = [InceptionV4_Logits_Logits_MatMul,InceptionV4_AuxLogits_Aux_logits_MatMul]
         return MMdnn_Output_input
 
+    def _reduced_kernel_size_for_small_input(self, input_tensor, kernel_size):
+        """Define kernel size which is automatically reduced for small input.
+
+        If the shape of the input images is unknown at graph construction time this
+        function assumes that the input images are is large enough.
+
+        Args:
+            input_tensor: input tensor of size [batch_size, height, width, channels].
+            kernel_size: desired kernel size of length 2: [kernel_height, kernel_width]
+
+        Returns:
+            a tensor with the kernel size.
+
+        """
+        shape = input_tensor.shape
+        if shape[2] is None or shape[3] is None:
+            kernel_size_out = kernel_size
+        else:
+            kernel_size_out = [min(shape[2], kernel_size[0]),
+                            min(shape[3], kernel_size[1])]
+        return kernel_size_out
 
     @staticmethod
     def __dense(name, **kwargs):

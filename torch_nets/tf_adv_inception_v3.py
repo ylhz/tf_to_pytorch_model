@@ -587,12 +587,34 @@ class KitModel(nn.Module):
         AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_2_Conv2d_0d_3x1_Relu = F.relu(AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_2_Conv2d_0d_3x1_BatchNorm_FusedBatchNorm)
         AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_2_concat = torch.cat((AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_2_Conv2d_0c_1x3_Relu, AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_2_Conv2d_0d_3x1_Relu,), 1)
         AdvInceptionV3_AdvInceptionV3_Mixed_7c_concat = torch.cat((AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_0_Conv2d_0a_1x1_Relu, AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_1_concat, AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_2_concat, AdvInceptionV3_AdvInceptionV3_Mixed_7c_Branch_3_Conv2d_0b_1x1_Relu,), 1)
-        AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool = F.avg_pool2d(AdvInceptionV3_AdvInceptionV3_Mixed_7c_concat, kernel_size=(8, 8), stride=(2, 2), padding=(0,), ceil_mode=False, count_include_pad=False)
+        kernel_size = self._reduced_kernel_size_for_small_input(AdvInceptionV3_AdvInceptionV3_Mixed_7c_concat, [8,8])
+        AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool = F.avg_pool2d(AdvInceptionV3_AdvInceptionV3_Mixed_7c_concat, kernel_size=(kernel_size[0], kernel_size[1]), stride=(2, 2), padding=(0,), ceil_mode=False, count_include_pad=False)
         AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D = self.AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D(AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool)
         AdvInceptionV3_Logits_SpatialSqueeze = torch.squeeze(AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D)
         MMdnn_Output_input = [AdvInceptionV3_Logits_SpatialSqueeze,AdvInceptionV3_AuxLogits_SpatialSqueeze]
         return MMdnn_Output_input
 
+    def _reduced_kernel_size_for_small_input(self, input_tensor, kernel_size):
+        """Define kernel size which is automatically reduced for small input.
+
+        If the shape of the input images is unknown at graph construction time this
+        function assumes that the input images are is large enough.
+
+        Args:
+            input_tensor: input tensor of size [batch_size, height, width, channels].
+            kernel_size: desired kernel size of length 2: [kernel_height, kernel_width]
+
+        Returns:
+            a tensor with the kernel size.
+
+        """
+        shape = input_tensor.shape
+        if shape[2] is None or shape[3] is None:
+            kernel_size_out = kernel_size
+        else:
+            kernel_size_out = [min(shape[2], kernel_size[0]),
+                            min(shape[3], kernel_size[1])]
+        return kernel_size_out
 
     @staticmethod
     def __batch_normalization(dim, name, **kwargs):
