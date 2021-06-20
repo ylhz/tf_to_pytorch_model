@@ -784,7 +784,7 @@ class KitModel(nn.Module):
         InceptionV4_AuxLogits_Conv2d_2a_Relu = F.relu(InceptionV4_AuxLogits_Conv2d_2a_BatchNorm_FusedBatchNorm)
         InceptionV4_InceptionV4_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm = self.InceptionV4_InceptionV4_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm(InceptionV4_InceptionV4_Mixed_7a_Branch_1_Conv2d_0c_7x1_Conv2D)
         InceptionV4_AuxLogits_Flatten_flatten_Shape = torch.Tensor(list(InceptionV4_AuxLogits_Conv2d_2a_Relu.size()))
-        InceptionV4_AuxLogits_Flatten_flatten_Reshape = torch.reshape(input = InceptionV4_AuxLogits_Conv2d_2a_Relu, shape = (1,768))
+        InceptionV4_AuxLogits_Flatten_flatten_Reshape = torch.reshape(input = InceptionV4_AuxLogits_Conv2d_2a_Relu, shape = (-1,768))
         InceptionV4_InceptionV4_Mixed_7a_Branch_1_Conv2d_0c_7x1_Relu = F.relu(InceptionV4_InceptionV4_Mixed_7a_Branch_1_Conv2d_0c_7x1_BatchNorm_FusedBatchNorm)
         InceptionV4_AuxLogits_Flatten_flatten_strided_slice = InceptionV4_AuxLogits_Flatten_flatten_Shape[0:1][0]
         InceptionV4_AuxLogits_Aux_logits_MatMul = self.InceptionV4_AuxLogits_Aux_logits_MatMul(InceptionV4_AuxLogits_Flatten_flatten_Reshape)
@@ -916,7 +916,7 @@ class KitModel(nn.Module):
         kernel_size = self._reduced_kernel_size_for_small_input(InceptionV4_InceptionV4_Mixed_7d_concat, [8,8])
         InceptionV4_Logits_AvgPool_1a_AvgPool = F.avg_pool2d(InceptionV4_InceptionV4_Mixed_7d_concat, kernel_size=(kernel_size[0], kernel_size[1]), stride=(1, 1), padding=(0,), ceil_mode=False, count_include_pad=False)
         InceptionV4_Logits_PreLogitsFlatten_flatten_Shape = torch.Tensor(list(InceptionV4_Logits_AvgPool_1a_AvgPool.size()))
-        InceptionV4_Logits_PreLogitsFlatten_flatten_Reshape = torch.reshape(input = InceptionV4_Logits_AvgPool_1a_AvgPool, shape = (1,1536))
+        InceptionV4_Logits_PreLogitsFlatten_flatten_Reshape = torch.reshape(input = InceptionV4_Logits_AvgPool_1a_AvgPool, shape = (-1,1536))
         InceptionV4_Logits_PreLogitsFlatten_flatten_strided_slice = InceptionV4_Logits_PreLogitsFlatten_flatten_Shape[0:1][0]
         InceptionV4_Logits_Logits_MatMul = self.InceptionV4_Logits_Logits_MatMul(InceptionV4_Logits_PreLogitsFlatten_flatten_Reshape)
         InceptionV4_Logits_PreLogitsFlatten_flatten_Reshape_shape = [InceptionV4_Logits_PreLogitsFlatten_flatten_strided_slice,self.InceptionV4_Logits_PreLogitsFlatten_flatten_Reshape_shape_1]
