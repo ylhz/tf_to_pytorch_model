@@ -49,6 +49,22 @@ white box: inception_v3
 
 black_box: inception_resnet_v2
 
+our result / paper result
+
+("*" indicates white-box attack)
+
+| attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | dense_161 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
+| ------------- | ------------ | --------- | ------------- | ---------- | --------- | --------------- | --------------- | ------------------ |
+| FGSM          | 81.0/80.9*   | 37.4/38.0 | 33.0/33.1     | 33.9/33.1  | /41.4     | 16.9/16.8       | 15.7/15.8       | 8.2/8.3            |
+| I-FGSM        | 100.0/100.0* | 30.1/29.6 | 19.4/19.4     | 21.4/20.3  | /20.7     | 12.0/11.7       | 12.4/12.1       | 5.5/5.5            |
+| MI-FGSM       | 100.0/100.0* | 55.1/54.1 | 42.8/43.5     | 51.7/50.9  | /45.8     | 22.2/21.9       | 21.6/21.1       | 11.2/10.5          |
+| DI-FGSM       | 99.7/99.8*   | 55.3/54.2 | 33.4/32.1     | 43.5/43.6  | /30.4     | 15.9/15.0       | 16.4/16.2       | 8.6/7.1            |
+| TI-FGSM       | /            | /         | /             | /          | /         | /30.8           | /30.6           | /22.7              |
+| PI-FGSM       | /100.0*      | /58.6     | /45.0         | /45.0      | /61.7     | /39.3           | /39.5           | /28.8              |
+| SI-FGSM       | /            | /         | /             | /          | /         | /               | /               | /                  |
+
+
+
 # Note !
 
 1. If the model has aux_logits output, the output will be ```[logits, aux_logits]```. Otherwise, the output is ```[logits]```. So ```logits = model(input)[0]```.
@@ -64,3 +80,6 @@ black_box: inception_resnet_v2
 
 2. Model input is best specified as required, otherwise errors may occur.
 
+# reference
+
+https://github.com/JHL-HUST/VT
