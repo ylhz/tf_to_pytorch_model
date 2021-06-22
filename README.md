@@ -1,6 +1,4 @@
-# tf_to_torch_model
-
-Language : EN | [CN](./README.cn.md) 
+# tf_to_torch_model 
 
 In this repo, we convert some common tf models used in adversarial attacks to torch models and provide the resultant models. We also provide the pytorch code for you to implement attacks, e.g., FGSM.
 ## File Description
