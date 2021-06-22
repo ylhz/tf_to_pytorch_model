@@ -43,9 +43,9 @@ The following table shows the source of the converted model and the accuracy of 
 
 # Implementation of sample attack
 
-This table is the data in the reproduced paper [Patch-wise Attack for Fooling Deep Neural Network](http://arxiv.org/abs/2007.06765), and we can see that we have obtained similar results with the converted model. The specific parameter settings can be consulted in the paper. 
+This table shows our result / paper result ("*" indicates white-box attack). The paper result is from [Patch-wise Attack for Fooling Deep Neural Network](http://arxiv.org/abs/2007.06765), and we can see that we have obtained similar results with the converted model. The specific parameter settings can be found in the paper. 
 
-our result / paper result ("*" indicates white-box attack)
+
 
 | attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
 | ------------- | ------------ | --------- | ------------- | ---------- | --------------- | --------------- | ------------------ |
@@ -72,11 +72,3 @@ our result / paper result ("*" indicates white-box attack)
     * tf_ens4_adv_inc_v3.
 
 2. Model input is best specified as required, otherwise errors may occur.
-
-# reference
-
-EAT：https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models
-
-NT：https://github.com/tensorflow/models/tree/master/research/slim#Pretrained
-
-PI-FGSM：https://github.com/qilong-zhang/Patch-wise-iterative-attack
