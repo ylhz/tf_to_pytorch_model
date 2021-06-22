@@ -13,7 +13,7 @@ nets_weight:  Put the original network weight file into this directory. (tensorf
 
 torch_nets: Converted torch model. 
 
-torch_nets_weight: Put the converted network weight file into this directory. (PyTorch. You can find them in **[Releases](https://github.com/ylhz/tf_to_pytorch_model/releases)**)
+torch_nets_weight: Put the converted network weight file into this directory. (You can find them in **[Releases](https://github.com/ylhz/tf_to_pytorch_model/releases)**)
 
 tf_attack.py: Sample attack method with tensorflow.
 
