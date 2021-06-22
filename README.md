@@ -45,7 +45,7 @@ The following table shows the source of the converted model and the accuracy of 
 
 This table is the data in the reproduced paper [Patch-wise Attack for Fooling Deep Neural Network](http://arxiv.org/abs/2007.06765), and we can see that we have obtained similar results with the converted model. The specific parameter settings can be consulted in the paper. 
 
-our result/ paper result("*" indicates white-box attack)
+our result / paper result ("*" indicates white-box attack)
 
 | attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
 | ------------- | ------------ | --------- | ------------- | ---------- | --------------- | --------------- | ------------------ |
