@@ -43,15 +43,11 @@ The following table shows the source of the converted model and the accuracy of 
 
 # Implementation of sample attack
 
-method: I-FGSM
-
 white box: inception_v3
-
-black_box: inception_resnet_v2
 
 our result / paper result
 
-("*" indicates white-box attack)
+("*" indicates white-box attack, TI means Translation-Invariant, it is one-step method)
 
 | attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | dense_161 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
 | ------------- | ------------ | --------- | ------------- | ---------- | --------- | --------------- | --------------- | ------------------ |
@@ -59,9 +55,8 @@ our result / paper result
 | I-FGSM        | 100.0/100.0* | 30.1/29.6 | 19.4/19.4     | 21.4/20.3  | /20.7     | 12.0/11.7       | 12.4/12.1       | 5.5/5.5            |
 | MI-FGSM       | 100.0/100.0* | 55.1/54.1 | 42.8/43.5     | 51.7/50.9  | /45.8     | 22.2/21.9       | 21.6/21.1       | 11.2/10.5          |
 | DI-FGSM       | 99.7/99.8*   | 55.3/54.2 | 33.4/32.1     | 43.5/43.6  | /30.4     | 15.9/15.0       | 16.4/16.2       | 8.6/7.1            |
-| TI-FGSM       | /            | /         | /             | /          | /         | /30.8           | /30.6           | /22.7              |
-| PI-FGSM       | /100.0*      | /58.6     | /45.0         | /45.0      | /61.7     | /39.3           | /39.5           | /28.8              |
-| SI-FGSM       | /            | /         | /             | /          | /         | /               | /               | /                  |
+| TI-FGSM       | /            | /         | /             | /          | /         | 31.2/30.8       | 31.1/30.6       | 22.9/22.7          |
+| PI-FGSM       | 100.0/100.0* | 57.5/58.6 | 47.6/45.0     | 52.2/51.3  | /61.7     | 38.4/39.3       | 39.0/39.5       | 28.0/28.8          |
 
 
 
