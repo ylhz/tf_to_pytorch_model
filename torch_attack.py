@@ -93,7 +93,7 @@ class Normalize(nn.Module):
         x = input.clone()
 
         if self.mode == 'tensorflow':
-            x = x * 2.0 -1.0  # convert data from [0,1] to [-1,1]
+            x = x * 2.0 - 1.0  # convert data from [0,1] to [-1,1]
         elif self.mode == 'torch':
             for i in range(size[1]):
                 x[:, i] = (x[:, i] - self.mean[i]) / self.std[i]
@@ -102,15 +102,15 @@ class Normalize(nn.Module):
 
 class ImageNet(data.Dataset):
     """load data from img and csv"""
-    def __init__(self, dir, csv_path, transforms = None):
-        self.dir = dir 
+    def __init__(self, dir, csv_path, transforms=None):
+        self.dir = dir
         self.csv = pd.read_csv(csv_path)
         self.transforms = transforms
 
     def __getitem__(self, index):
         img_obj = self.csv.loc[index]
-        ImageID = img_obj['ImageId'] + '.png'
-        Truelabel = img_obj['TrueLabel']  
+        ImageID = img_obj['filename']
+        Truelabel = img_obj['label']
         img_path = os.path.join(self.dir, ImageID)
         pil_img = Image.open(img_path).convert('RGB')
         if self.transforms:
