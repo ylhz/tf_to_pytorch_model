@@ -47,7 +47,7 @@ white box: inception_v3
 
 our result / paper result
 
-("*" indicates white-box attack, TI means Translation-Invariant, it is one-step method)
+("*" indicates white-box attack)
 
 | attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
 | ------------- | ------------ | --------- | ------------- | ---------- | --------------- | --------------- | ------------------ |
