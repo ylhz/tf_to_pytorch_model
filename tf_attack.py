@@ -5,6 +5,7 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+import random
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -32,6 +33,7 @@ FLAGS = tf.flags.FLAGS
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = FLAGS.gpu
 
+
 def seed_tensorflow(seed=0):
     """Set a random seed to ensure that the results are reproducible"""  
     random.seed(seed)
@@ -39,10 +41,12 @@ def seed_tensorflow(seed=0):
     np.random.seed(seed)
     tf.set_random_seed(seed)
 
+
 model_checkpoint_map = {
     'inception_v3': os.path.join(FLAGS.checkpoint_path, 'inception_v3.ckpt'),
     'inception_resnet_v2': os.path.join(FLAGS.checkpoint_path, 'inception_resnet_v2_2016_08_30.ckpt'),
 }
+
 
 def load_images(input_dir, csv_file, index, batch_shape):
     """Images for inception classifier are normalized to be in [-1, 1] interval"""
@@ -62,6 +66,7 @@ def load_images(input_dir, csv_file, index, batch_shape):
     images = images * 2.0 - 1.0
     return images, filenames, truelabel
 
+
 def save_images(images, filenames, output_dir):
     """Saves images to the output directory."""
     for i, filename in enumerate(filenames):
@@ -72,6 +77,7 @@ def save_images(images, filenames, output_dir):
             img = Image.fromarray((image * 255 + 0.5).astype('uint8')).convert('RGB')
             img.save(os.path.join(output_dir, filename), quality=100)
 
+
 def graph(x, y, i, x_max, x_min, grad):
     """"I-FGSM
     """
@@ -80,14 +86,14 @@ def graph(x, y, i, x_max, x_min, grad):
     num_iter = FLAGS.num_iter
     alpha = eps / num_iter
     # momentum = FLAGS.momentum
-    	
+
     with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
         logits_v3, end_points_v3 = inception_v3.inception_v3(
-              x, num_classes = FLAGS.num_classes, is_training = False, reuse=tf.AUTO_REUSE)
-    
+              x, num_classes=FLAGS.num_classes, is_training=False, reuse=tf.AUTO_REUSE)
+
     logits = logits_v3
     auxlogits = end_points_v3['AuxLogits']
- 
+
     cross_entropy = tf.losses.softmax_cross_entropy(one_hot, logits, label_smoothing=0.0, weights=1.0)
     cross_entropy += tf.losses.softmax_cross_entropy(one_hot, auxlogits, label_smoothing=0.0, weights=1.0)
 
@@ -102,11 +108,13 @@ def graph(x, y, i, x_max, x_min, grad):
     i = tf.add(i, 1)
     return x, y, i, x_max, x_min, noise
 
+
 def stop(x, y, i, x_max, x_min, grad):
     """I-FGSM　Attack stop condition
     """
     num_iter = FLAGS.num_iter
     return tf.less(i, num_iter)
+
 
 def main(_):
     # Because we normalized the input through "input * 2.0 - 1.0" to [-1,1],
@@ -119,20 +127,20 @@ def main(_):
     tf.logging.set_verbosity(tf.logging.INFO)
 
     with tf.Graph().as_default():
-        x_input = tf.placeholder(tf.float32, shape = batch_shape)
-        adv_img = tf.placeholder(tf.float32, shape = batch_shape)
-        y = tf.placeholder(tf.int32, shape = batch_shape[0])
+        x_input = tf.placeholder(tf.float32, shape=batch_shape)
+        adv_img = tf.placeholder(tf.float32, shape=batch_shape)
+        y = tf.placeholder(tf.int32, shape=batch_shape[0])
         x_max = tf.clip_by_value(x_input + eps, -1.0, 1.0)
         x_min = tf.clip_by_value(x_input - eps, -1.0, 1.0)
 
         # white model
         with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
             logits_v3, end_points_v3 = inception_v3.inception_v3(
-                adv_img, num_classes = FLAGS.num_classes, is_training = False)
+                adv_img, num_classes=FLAGS.num_classes, is_training=False)
         # black model
         with slim.arg_scope(inception_resnet_v2.inception_resnet_v2_arg_scope()):
             logits_ensadv_res_v2, end_points_ensadv_res_v2 = inception_resnet_v2.inception_resnet_v2(
-                    adv_img, num_classes = num_classes, is_training = False, scope = 'InceptionResnetV2')
+                    adv_img, num_classes=num_classes, is_training=False, scope='InceptionResnetV2')
 
         pred_inc_res_v2 = tf.argmax(logits_ensadv_res_v2, 1)
         pred_inc_v3 = tf.argmax(logits_v3, 1)
@@ -155,8 +163,8 @@ def main(_):
                 # generate adversarial examples
                 my_adv_images = sess.run(x_adv, feed_dict={x_input: images, y: True_label}).astype(np.float32)
                 # test attack success rate
-                pred_inc_res_v2_ = sess.run(pred_inc_res_v2, feed_dict = {adv_img: my_adv_images})
-                pred_inc_v3_ = sess.run(pred_inc_v3, feed_dict = {adv_img: my_adv_images})
+                pred_inc_res_v2_ = sess.run(pred_inc_res_v2, feed_dict={adv_img: my_adv_images})
+                pred_inc_v3_ = sess.run(pred_inc_v3, feed_dict={adv_img: my_adv_images})
                 inc_error_num += (pred_inc_v3_ != True_label).sum()
                 inc_res_v2_error_num += (pred_inc_res_v2_ != True_label).sum()
                 save_images(my_adv_images, filenames, FLAGS.output_dir)
