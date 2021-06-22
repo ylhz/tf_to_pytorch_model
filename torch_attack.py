@@ -75,6 +75,13 @@ def seed_torch(seed):
     torch.backends.cudnn.enabled = False
 
 
+def mkdir(path):
+    """Check if the folder exists, if it does not exist, create it"""
+    isExists = os.path.exists(path)
+    if not isExists:
+        os.makedirs(path)
+
+
 class Normalize(nn.Module):
 
     def __init__(self, mean=0, std=1, mode='tensorflow'):
@@ -167,6 +174,7 @@ def get_models(list_nets, model_dir):
 
 def save_img(images, filenames, output_dir):
     """save high quality jpeg"""
+    mkdir(output_dir)
     for i, filename in enumerate(filenames):
         # Add 0.5 after unnormalizing to [0, 255] to round to nearest integer
         ndarr = images[i].mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()

@@ -34,6 +34,12 @@ os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = FLAGS.gpu
 
 
+model_checkpoint_map = {
+    'inception_v3': os.path.join(FLAGS.checkpoint_path, 'inception_v3.ckpt'),
+    'inception_resnet_v2': os.path.join(FLAGS.checkpoint_path, 'inception_resnet_v2_2016_08_30.ckpt'),
+}
+
+
 def seed_tensorflow(seed=0):
     """Set a random seed to ensure that the results are reproducible"""  
     random.seed(seed)
@@ -42,10 +48,11 @@ def seed_tensorflow(seed=0):
     tf.set_random_seed(seed)
 
 
-model_checkpoint_map = {
-    'inception_v3': os.path.join(FLAGS.checkpoint_path, 'inception_v3.ckpt'),
-    'inception_resnet_v2': os.path.join(FLAGS.checkpoint_path, 'inception_resnet_v2_2016_08_30.ckpt'),
-}
+def mkdir(path):
+    """Check if the folder exists, if it does not exist, create it"""
+    isExists = os.path.exists(path)
+    if not isExists:
+        os.makedirs(path)
 
 
 def load_images(input_dir, csv_file, index, batch_shape):
@@ -69,6 +76,7 @@ def load_images(input_dir, csv_file, index, batch_shape):
 
 def save_images(images, filenames, output_dir):
     """Saves images to the output directory."""
+    mkdir(output_dir)
     for i, filename in enumerate(filenames):
         # Images for inception classifier are normalized to be in [-1, 1] interval,
         # so rescale them back to [0, 1].
