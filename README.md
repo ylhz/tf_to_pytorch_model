@@ -43,11 +43,9 @@ The following table shows the source of the converted model and the accuracy of 
 
 # Implementation of sample attack
 
-white box: inception_v3
+This table is the data in the reproduced paper [Patch-wise Attack for Fooling Deep Neural Network](http://arxiv.org/abs/2007.06765), and we can see that we have obtained similar results with the converted model. The specific parameter settings can be consulted in the paper. 
 
-our result / paper result
-
-("*" indicates white-box attack, TI means Translation-Invariant, it is one-step method)
+our result/ paper result("*" indicates white-box attack)
 
 | attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
 | ------------- | ------------ | --------- | ------------- | ---------- | --------------- | --------------- | ------------------ |
@@ -77,4 +75,8 @@ our result / paper result
 
 # reference
 
-https://github.com/JHL-HUST/VT
+EAT：https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models
+
+NT：https://github.com/tensorflow/models/tree/master/research/slim#Pretrained
+
+PI-FGSM：https://github.com/qilong-zhang/Patch-wise-iterative-attack
