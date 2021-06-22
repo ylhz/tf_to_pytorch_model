@@ -45,9 +45,7 @@ The following table shows the source of the converted model and the accuracy of 
 
 white box: inception_v3
 
-our result / paper result
-
-("*" indicates white-box attack)
+our result / paper result ("*" indicates white-box attack)
 
 | attack method | inc_v3       | inc_v4    | resnet_v2_152 | inc_res_v2 | ens3_adv_inc_v3 | ens4_adv_inc_v3 | ens_adv_inc_res_v2 |
 | ------------- | ------------ | --------- | ------------- | ---------- | --------------- | --------------- | ------------------ |
