@@ -67,4 +67,4 @@ This table shows our result / paper result ("*" indicates white-box attack). The
     * tf_ens3_adv_inc_v3, 
     * tf_ens4_adv_inc_v3.
 
-2. Model input is best specified as required, otherwise errors may occur.
+2. **Model input size is best specified as required, otherwise errors may occur.**
