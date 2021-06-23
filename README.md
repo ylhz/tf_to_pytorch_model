@@ -1,7 +1,7 @@
 # tf_to_torch_model 
 
 In this repo, we convert some common Tensorflow models used in adversarial attacks to PyTorch models and provide the resultant models. 
-Since these models are converted from their Tensorflow version, the inputs need the same normalization, i.e., [-1,1]. We have already done this, so we can use it directly
+Since these models are converted from their Tensorflow version, the inputs need the same normalization, i.e., [-1,1]. We have already done this, so we can use it directly.
 ```python
 model = nn.Sequential(
     # Images for inception classifier are normalized to be in [-1, 1] interval.
@@ -16,11 +16,11 @@ python torch_attack.py
 
 ## File Description
 
-data: test images
+dataset: Test images.
 
 nets: Original tensorflow models.
 
-nets_weight:  Put the original Tensorflow network weight file into this directory.
+nets_weight: Put the original Tensorflow network weight file into this directory.
 
 torch_nets: Converted torch model. 
 
@@ -36,16 +36,16 @@ The following table shows the source of the converted model and the accuracy of 
 
 | Converted model                                         | Model source | torch Accuracy(%) | tf Accuracy(%) | input size |
 | ------------------------------------------------------------ | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [tf_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v3.npy) | [inception_v3_2016_08_28](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models) | 99.90 | 99.90 | 299*299 |
-| [tf_inception_v4](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v4.npy) | [inception_v4_2016_09_09](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models) | 99.90 | 100.00 | 299*299 |
-|[tf_resnet_v2_50](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_50.npy)|[resnet_v2_50_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|97.20|97.20|  299*299|
-|[tf_resnet_v2_101](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_101.npy)|[resnet_v2_101_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|99.80|99.80|  299*299|
-|[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|[resnet_v2_152_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)| 97.50 | 97.50 | 299*299 |
-| [tf_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inc_res_v2.npy) |[inception_resnet_v2_2016_08_30](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|99.90| 99.90 | 299*299 |
-| [tf_adv_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_adv_inception_v3.npy) | [adv_inception_v3_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models) | 100.00 | 100.00 | 299*299 |
-| [tf_ens3_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy) | [ens3_adv_inception_v3_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models) | 99.80 | 99.80 | 299*299 |
-| [tf_ens4_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy) |  [ens4_adv_inception_v3_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models)  | 99.90 | 99.90 | 299*299 |
-| [tf_ens_adv_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens_adv_inc_res_v2.npy) | [ens_adv_inception_resnet_v2_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models) | 99.90 | 99.90 | 299*299 |
+| [tf_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v3.npy) | [inception_v3_2016_08_28](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models) | 96.20 | 96.20 | 299*299 |
+| [tf_inception_v4](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inception_v4.npy) | [inception_v4_2016_09_09](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models) | 97.40 | 97.40 | 299*299 |
+|[tf_resnet_v2_50](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_50.npy)|[resnet_v2_50_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|94.90|94.90|  299*299|
+|[tf_resnet_v2_101](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_101.npy)|[resnet_v2_101_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|96.30|96.30|  299*299|
+|[tf_resnet_v2_152](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_resnet_v2_152.npy)|[resnet_v2_152_2017_04_14](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)| 95.80 | 95.80 | 299*299 |
+| [tf_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_inc_res_v2.npy) |[inception_resnet_v2_2016_08_30](https://github.com/tensorflow/models/tree/master/research/slim#pre-trained-models)|99.80| 99.80 | 299*299 |
+| [tf_adv_inception_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_adv_inception_v3.npy) | [adv_inception_v3_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models) | 94.90 | 94.90 | 299*299 |
+| [tf_ens3_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens3_adv_inc_v3.npy) | [ens3_adv_inception_v3_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models) | 93.70 | 93.70 | 299*299 |
+| [tf_ens4_adv_inc_v3](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens4_adv_inc_v3.npy) |  [ens4_adv_inception_v3_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models)  | 91.60 | 91.60 | 299*299 |
+| [tf_ens_adv_inc_res_v2](https://github.com/ylhz/tf_to_pytorch_model/releases/download/v1.0/tf_ens_adv_inc_res_v2.npy) | [ens_adv_inception_resnet_v2_2017_08_18](https://github.com/tensorflow/models/tree/archive/research/adv_imagenet_models#available-models) | 97.60 | 97.60 | 299*299 |
 
 
 # Implementation of sample attack
