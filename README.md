@@ -1,7 +1,7 @@
 # tf_to_torch_model 
 
 In this repo, we convert some common Tensorflow models used in adversarial attacks to PyTorch models and provide the resultant models. 
-Since these models are converted from their Tensorflow version, the inputs need the same normalization, i.e., [-1,1]. We have already done this, so we can use it directly.
+Since these models are converted from their Tensorflow version, the inputs need the same normalization, i.e., [-1,1]. We have already done this, so you can use it directly.
 ```python
 model = nn.Sequential(
     # Images for inception classifier are normalized to be in [-1, 1] interval.
