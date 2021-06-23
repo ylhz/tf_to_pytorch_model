@@ -16,8 +16,8 @@ from nets import inception_v3, inception_resnet_v2
 slim = tf.contrib.slim
 
 tf.flags.DEFINE_string('checkpoint_path', './nets_weight', 'Path to checkpoint for inception network.')
-tf.flags.DEFINE_string('input_csv', 'data/val_rs.csv', 'Input directory with images.')
-tf.flags.DEFINE_string('input_dir', 'data/val_rs/', 'Input directory with images.')
+tf.flags.DEFINE_string('input_csv', 'dataset/dev_dataset.csv', 'Input directory with images.')
+tf.flags.DEFINE_string('input_dir', 'dataset/images/', 'Input directory with images.')
 tf.flags.DEFINE_string('output_dir', 'adv_img_tf/', 'Output directory with adv images.')
 tf.flags.DEFINE_float('max_epsilon', 16.0, 'Maximum size of adversarial perturbation.')
 tf.flags.DEFINE_integer('num_classes', 1001, 'Maximum size of adversarial perturbation.')
@@ -26,7 +26,7 @@ tf.flags.DEFINE_integer('image_width', 299, 'Width of each input images.')
 tf.flags.DEFINE_integer('image_height', 299, 'Height of each input images.')
 tf.flags.DEFINE_integer('batch_size', 10, 'How man images process at one time.')
 tf.flags.DEFINE_float('momentum', 1.0, 'Momentum.')
-tf.flags.DEFINE_string('gpu', '3', 'gpu idx.')   
+tf.flags.DEFINE_string('gpu', '0', 'gpu idx.')
 
 FLAGS = tf.flags.FLAGS
 
@@ -63,11 +63,11 @@ def load_images(input_dir, csv_file, index, batch_shape):
     idx = 0
     for i in range(index, min(index + batch_shape[0], 1000)):
         img_obj = csv_file.loc[i]
-        ImageID = img_obj['filename']
+        ImageID = img_obj['ImageId'] + '.png'
         img_path = os.path.join(input_dir, ImageID)
         images[idx, ...] = np.array(Image.open(img_path)).astype(np.float) / 255.0
         filenames.append(ImageID)
-        truelabel.append(img_obj['label'])
+        truelabel.append(img_obj['TrueLabel'])
         idx += 1
 
     images = images * 2.0 - 1.0
@@ -164,7 +164,7 @@ def main(_):
         with tf.Session() as sess:
             s1.restore(sess, model_checkpoint_map['inception_v3'])
             s2.restore(sess, model_checkpoint_map['inception_resnet_v2'])
-            
+
             dev = pd.read_csv(FLAGS.input_csv)
             for idx in tqdm(range(0, 1000 // FLAGS.batch_size)):
                 images, filenames, True_label = load_images(FLAGS.input_dir, dev, idx * FLAGS.batch_size, batch_shape)

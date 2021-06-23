@@ -46,10 +46,10 @@ list_nets = [
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--gpu', type=str, default='0', help='The ID of GPU to use.')
-parser.add_argument('--input_csv', type=str, default='/home/yuanshengming/Global_Attack/VT/dev_data/val_rs.csv', help='Input csv with images.')
-parser.add_argument('--input_dir', type=str, default='/home/yuanshengming/Global_Attack/VT/dev_data/val_rs', help='Input images.')
-parser.add_argument('--output_dir', type=str, default='/home/yuanshengming/data/defenses/base_img_VT/fgsm_resnet50_16', help='Output directory with adv images.')
-parser.add_argument('--model_dir', type=str, default='./torch_nets_weight/', help='Model weight directory.')
+parser.add_argument('--input_csv', type=str, default='dataset/dev_dataset.csv', help='Input csv with images.')
+parser.add_argument('--input_dir', type=str, default='dataset/images/', help='Input images.')
+parser.add_argument('--output_dir', type=str, default='adv_img_torch/', help='Output directory with adv images.')
+parser.add_argument('--model_dir', type=str, default='torch_nets_weight/', help='Model weight directory.')
 
 parser.add_argument("--max_epsilon", type=float, default=16.0, help="Maximum size of adversarial perturbation.")
 parser.add_argument("--num_iter", type=int, default=10, help="Number of iterations.")
@@ -116,8 +116,8 @@ class ImageNet(data.Dataset):
 
     def __getitem__(self, index):
         img_obj = self.csv.loc[index]
-        ImageID = img_obj['filename']
-        Truelabel = img_obj['label']
+        ImageID = img_obj['ImageId'] + '.png'
+        Truelabel = img_obj['TrueLabel']
         img_path = os.path.join(self.dir, ImageID)
         pil_img = Image.open(img_path).convert('RGB')
         if self.transforms:
