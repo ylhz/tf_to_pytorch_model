@@ -8,7 +8,7 @@ model = nn.Sequential(
     Normalize('tensorflow'), 
     net.KitModel(model_path).eval().cuda())
 ```
-We also provide the PyTorch code for you to implement attacks, e.g., I-FGSM:
+We also provide the PyTorch code for you to implement attacks, e.g., I-FGSM (run the following command):
 ```python
 python torch_attack.py
 ````
