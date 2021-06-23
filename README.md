@@ -1,6 +1,19 @@
 # tf_to_torch_model 
 
-In this repo, we convert some common tf models used in adversarial attacks to torch models and provide the resultant models. We also provide the pytorch code for you to implement attacks, e.g., I-FGSM.
+In this repo, we convert some common Tensorflow models used in adversarial attacks to PyTorch models and provide the resultant models. 
+Since these models are converted from their tf version, the inputs need the same normalization, i.e., [-1,1]. We have already done this, so we can use it directly
+```python
+model = nn.Sequential(
+    # Images for inception classifier are normalized to be in [-1, 1] interval.
+    Normalize('tensorflow'), 
+    net.KitModel(model_path).eval().cuda())
+```
+We also provide the PyTorch code for you to implement attacks, e.g., I-FGSM:
+```python
+python torch_attack.py
+````
+
+
 ## File Description
 
 data: test images
