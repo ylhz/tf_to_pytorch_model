@@ -5,11 +5,15 @@ Since these models are converted from their Tensorflow version, the inputs need 
 ```python
 model = nn.Sequential(
     # Images for inception classifier are normalized to be in [-1, 1] interval.
-    Normalize('tensorflow'), 
+    Normalize(mean=[0.5,0.5,0.5], std=[0.5,0.5,0.5]), 
     net.KitModel(model_path).eval().cuda())
+
+logit = model(input)
 ```
+
 We also provide the PyTorch code for you to implement attacks on our converted models, e.g., I-FGSM (run the following command):
-```python
+
+```bash
 python torch_attack.py
 ````
 
@@ -67,9 +71,16 @@ This table shows our result / paper result ("*" indicates white-box attack). The
 
 # Note !
 
-1. If the model has aux_logits output, the output will be ```[logits, aux_logits]```. Otherwise, the output is ```[logits]```. So ```logits = model(input)[0]```.
+1. If you want to use aux_logits, using ```aux_logits=True``` to create the model:
+```python
+model = nn.Sequential(
+    # Images for inception classifier are normalized to be in [-1, 1] interval.
+    Normalize(mean=[0.5,0.5,0.5], std=[0.5,0.5,0.5]), 
+    net.KitModel(model_path, aux_logits=True).eval().cuda())
+```
+At this time the model output is ```[logits, aux_logits]```, and ```logits, aux_logits = model(input)```.
 
-    Models with aux_logits: 
+2. Models with aux_logits: 
 
     * tf2torch_inception_v3, 
     * tf2torch_inception_v4, 

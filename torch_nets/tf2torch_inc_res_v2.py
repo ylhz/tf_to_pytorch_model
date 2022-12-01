@@ -20,8 +20,9 @@ def load_weights(weight_file):
 class KitModel(nn.Module):
 
     
-    def __init__(self, weight_file):
+    def __init__(self, weight_file, aux_logits=False):
         super(KitModel, self).__init__()
+        self.aux_logits=aux_logits
         global _weights_dict
         _weights_dict = load_weights(weight_file)
 
@@ -1459,7 +1460,10 @@ class KitModel(nn.Module):
         InceptionResnetV2_Logits_Flatten_flatten_strided_slice = InceptionResnetV2_Logits_Flatten_flatten_Shape[0:1][0]
         InceptionResnetV2_Logits_Logits_MatMul = self.InceptionResnetV2_Logits_Logits_MatMul(InceptionResnetV2_Logits_Flatten_flatten_Reshape)
         InceptionResnetV2_Logits_Flatten_flatten_Reshape_shape = [InceptionResnetV2_Logits_Flatten_flatten_strided_slice,self.InceptionResnetV2_Logits_Flatten_flatten_Reshape_shape_1]
-        MMdnn_Output_input = [InceptionResnetV2_Logits_Logits_MatMul,InceptionResnetV2_AuxLogits_Logits_MatMul]
+        if self.aux_logits:
+            MMdnn_Output_input = [InceptionResnetV2_Logits_Logits_MatMul,InceptionResnetV2_AuxLogits_Logits_MatMul]
+        else:
+            MMdnn_Output_input = InceptionResnetV2_Logits_Logits_MatMul
         return MMdnn_Output_input
 
     def _reduced_kernel_size_for_small_input(self, input_tensor, kernel_size):

@@ -20,8 +20,9 @@ def load_weights(weight_file):
 class KitModel(nn.Module):
 
     
-    def __init__(self, weight_file):
+    def __init__(self, weight_file, aux_logits=False):
         super(KitModel, self).__init__()
+        self.aux_logits = aux_logits
         global _weights_dict
         _weights_dict = load_weights(weight_file)
 
@@ -591,7 +592,10 @@ class KitModel(nn.Module):
         Ens4AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool = F.avg_pool2d(Ens4AdvInceptionV3_Ens4AdvInceptionV3_Mixed_7c_concat, kernel_size=(kernel_size[0], kernel_size[1]), stride=(2, 2), padding=(0,), ceil_mode=False, count_include_pad=False)
         Ens4AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D = self.Ens4AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D(Ens4AdvInceptionV3_Logits_AvgPool_1a_8x8_AvgPool)
         Ens4AdvInceptionV3_Logits_SpatialSqueeze = torch.squeeze(Ens4AdvInceptionV3_Logits_Conv2d_1c_1x1_Conv2D)
-        MMdnn_Output_input = [Ens4AdvInceptionV3_Logits_SpatialSqueeze,Ens4AdvInceptionV3_AuxLogits_SpatialSqueeze]
+        if self.aux_logits:
+            MMdnn_Output_input = [Ens4AdvInceptionV3_Logits_SpatialSqueeze,Ens4AdvInceptionV3_AuxLogits_SpatialSqueeze]
+        else:
+            MMdnn_Output_input = Ens4AdvInceptionV3_Logits_SpatialSqueeze
         return MMdnn_Output_input
 
     def _reduced_kernel_size_for_small_input(self, input_tensor, kernel_size):

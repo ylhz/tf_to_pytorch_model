@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms as T
 import torch.nn.functional as F
 from torch.autograd import Variable as V
-from torch.autograd.gradcheck import zero_gradients
+# from torch.autograd.gradcheck import zero_gradients
 from torch.utils import data
 import os
 import random
@@ -51,6 +51,8 @@ parser.add_argument('--input_dir', type=str, default='dataset/images/', help='In
 parser.add_argument('--output_dir', type=str, default='adv_img_torch/', help='Output directory with adv images.')
 parser.add_argument('--model_dir', type=str, default='torch_nets_weight/', help='Model weight directory.')
 
+parser.add_argument('--white_model', type=str, default='tf2torch_inception_v3', help='Substitution model.')
+
 parser.add_argument("--max_epsilon", type=float, default=16.0, help="Maximum size of adversarial perturbation.")
 parser.add_argument("--num_iter", type=int, default=10, help="Number of iterations.")
 parser.add_argument("--batch_size", type=int, default=10, help="How many images process at one time.")
@@ -84,26 +86,23 @@ def mkdir(path):
 
 class Normalize(nn.Module):
 
-    def __init__(self, mean=0, std=1, mode='tensorflow'):
+    def __init__(self, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]):
         """
-        mode:
-            'tensorflow':convert data from [0,1] to [-1,1]
-            'torch':(input - mean) / std
+        (input - mean) / std
+        ImageNet normalize:
+            'tensorflow': mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]
+            'torch': mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
         """
         super(Normalize, self).__init__()
         self.mean = mean
         self.std = std
-        self.mode = mode
 
     def forward(self, input):
         size = input.size()
         x = input.clone()
-
-        if self.mode == 'tensorflow':
-            x = x * 2.0 - 1.0  # convert data from [0,1] to [-1,1]
-        elif self.mode == 'torch':
-            for i in range(size[1]):
-                x[:, i] = (x[:, i] - self.mean[i]) / self.std[i]
+            
+        for i in range(size[1]):
+            x[:, i] = (x[:, i] - self.mean[i]) / self.std[i]
         return x
 
 
@@ -155,12 +154,19 @@ def get_model(net_name, model_dir):
     elif net_name == 'tf2torch_ens_adv_inc_res_v2':
         net = tf2torch_ens_adv_inc_res_v2
     else:
-        print('Wrong model name!')
+        print('Wrong model name:', net_name, '!')
+        exit()
 
-    model = nn.Sequential(
-        # Images for inception classifier are normalized to be in [-1, 1] interval.
-        Normalize('tensorflow'), 
-        net.KitModel(model_path).eval().cuda(),)
+    if 'inc' in net_name:
+        model = nn.Sequential(
+            # Images for inception classifier are normalized to be in [-1, 1] interval.
+            Normalize(mean=[0.5,0.5,0.5], std=[0.5,0.5,0.5]), 
+            net.KitModel(model_path, aux_logits=True).eval().cuda(),)
+    else:
+        model = nn.Sequential(
+            # Images for inception classifier are normalized to be in [-1, 1] interval.
+            Normalize(mean=[0.5,0.5,0.5], std=[0.5,0.5,0.5]), 
+            net.KitModel(model_path).eval().cuda(),)
     return model
 
 
@@ -179,7 +185,7 @@ def save_img(images, filenames, output_dir):
         # Add 0.5 after unnormalizing to [0, 255] to round to nearest integer
         ndarr = images[i].mul(255).add_(0.5).clamp_(0, 255).permute(1, 2, 0).to('cpu', torch.uint8).numpy()
         img = Image.fromarray(ndarr)
-        img.save(os.path.join(output_dir, filename), quality=100)
+        img.save(os.path.join(output_dir, filename))
 
 
 def attack(model, img, label):
@@ -193,7 +199,7 @@ def attack(model, img, label):
 
     old_grad = 0.0
     for i in range(num_iter):
-        zero_gradients(noise)
+        # zero_gradients(noise)
         x = img + noise
 
         output = model(x)
@@ -242,7 +248,7 @@ def main():
         images = images.cuda()
 
         # Start Attack
-        adv_img = attack(models['tf2torch_inception_v3'], images, label)
+        adv_img = attack(models[opt.white_model], images, label)
 
         # Save adversarial examples
         save_img(adv_img, filename, opt.output_dir)
@@ -250,8 +256,11 @@ def main():
         # Prediction
         with torch.no_grad():
             for net in list_nets:
-                logits[net] = models[net](adv_img)
-                correct_num[net] += (torch.argmax(logits[net][0], axis=1) != label).detach().sum().cpu()
+                if "inc" in net:
+                    logits[net] = models[net](adv_img)[0]
+                else:
+                    logits[net] = models[net](adv_img)
+                correct_num[net] += (torch.argmax(logits[net], axis=1) != label).detach().sum().cpu()
 
     # Print attack success rate
     for net in list_nets:
