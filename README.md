@@ -77,8 +77,9 @@ model = nn.Sequential(
     # Images for inception classifier are normalized to be in [-1, 1] interval.
     Normalize(mean=[0.5,0.5,0.5], std=[0.5,0.5,0.5]), 
     net.KitModel(model_path, aux_logits=True).eval().cuda())
+    
+logits, aux_logits = model(input)
 ```
-At this time the model output is ```[logits, aux_logits]```, and ```logits, aux_logits = model(input)```.
 
 2. Models with aux_logits: 
 
